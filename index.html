@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lisa Momas — Digital Analytics & Data Analyst</title>
+  <meta name="description" content="Portfolio of Lisa Momas, Digital Analytics & Data Analyst. Discover my projects, dashboards and analytics expertise." />
+  <meta property="og:title" content="Lisa Momas — Digital Analytics & Data Analyst" />
+  <meta property="og:description" content="Portfolio of Lisa Momas, Digital Analytics & Data Analyst." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            teal: {
+              50:  '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0d9488, #0369a1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.12);
+    }
+    .tag {
+      display: inline-block;
+      background: #f0fdfa;
+      color: #0f766e;
+      border: 1px solid #ccfbf1;
+      border-radius: 9999px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Hero SVG wave animation */
+    .wave-1 { animation: wave-drift  18s ease-in-out infinite; }
+    .wave-2 { animation: wave-drift  22s ease-in-out infinite reverse; }
+    .wave-3 { animation: wave-drift2 15s ease-in-out infinite; }
+    .wave-4 { animation: wave-drift2 25s ease-in-out infinite reverse; }
+
+    @keyframes wave-drift {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(-1.5%); }
+    }
+    @keyframes wave-drift2 {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(1.5%); }
+    }
+
+    /* Floating dashboard widget decoration */
+    .widget-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .widget-float-delay {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* Language toggle active state */
+    .lang-active {
+      background-color: #0d9488;
+      color: white;
+    }
+
+    /* In-progress card */
+    .card-wip {
+      border-color: #fde68a;
+      background: linear-gradient(135deg, #fffbeb, #fff);
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased">
+
+  <!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-slate-100 z-50">
+    <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+
+      <a href="#" class="font-semibold text-slate-900 tracking-tight" data-i18n="nav.brand">About Me</a>
+
+      <div class="flex items-center gap-6">
+        <div class="hidden sm:flex gap-6 text-sm text-slate-500">
+          <a href="#about"    class="hover:text-teal-600 transition-colors" data-i18n="nav.about">About</a>
+          <a href="#skills"   class="hover:text-teal-600 transition-colors" data-i18n="nav.skills">Skills</a>
+          <a href="#projects" class="hover:text-teal-600 transition-colors" data-i18n="nav.projects">Projects</a>
+          <a href="#contact"  class="hover:text-teal-600 transition-colors" data-i18n="nav.contact">Contact</a>
+        </div>
+
+        <!-- Language toggle -->
+        <div class="flex rounded-full border border-slate-200 overflow-hidden text-xs font-semibold">
+          <button id="btn-en" onclick="setLang('en')"
+            class="px-3 py-1 transition-colors lang-active">EN</button>
+          <button id="btn-fr" onclick="setLang('fr')"
+            class="px-3 py-1 transition-colors text-slate-500 hover:text-teal-600">FR</button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════ HERO ══════════════════════════════════ -->
+  <section class="min-h-screen flex items-center pt-16 relative overflow-hidden bg-white">
+
+    <!-- SVG Wave Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice"
+           class="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Background gradient -->
+          <linearGradient id="hero-bg" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#ffffff"/>
+            <stop offset="60%"  stop-color="#f0fdfa"/>
+            <stop offset="100%" stop-color="#e0f2fe"/>
+          </linearGradient>
+          <!-- Wave gradients -->
+          <linearGradient id="wg1" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#bae6fd" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#99f6e4" stop-opacity="0.45"/>
+          </linearGradient>
+          <linearGradient id="wg2" x1="1" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#7dd3fc" stop-opacity="0.40"/>
+            <stop offset="100%" stop-color="#5eead4" stop-opacity="0.40"/>
+          </linearGradient>
+          <linearGradient id="wg3" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#99f6e4" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#a5f3fc" stop-opacity="0.45"/>
+          </linearGradient>
+          <linearGradient id="wg4" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#ccfbf1" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#bae6fd" stop-opacity="0.40"/>
+          </linearGradient>
+          <!-- Dot texture pattern -->
+          <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.2" fill="white" fill-opacity="0.55"/>
+          </pattern>
+        </defs>
+
+        <!-- Background fill -->
+        <rect width="1440" height="700" fill="url(#hero-bg)"/>
+
+        <!-- Wave 1 — large background wave, sky-blue tone -->
+        <path class="wave-1"
+              d="M-80,320 C200,140 500,460 780,290 C1020,150 1260,400 1520,260 L1520,700 L-80,700 Z"
+              fill="url(#wg1)"/>
+
+        <!-- Wave 2 — mid layer, teal tone -->
+        <path class="wave-2"
+              d="M-60,420 C160,270 440,540 740,380 C1000,240 1260,480 1520,350 L1520,700 L-60,700 Z"
+              fill="url(#wg2)"/>
+
+        <!-- Wave 3 — foreground, teal/cyan -->
+        <path class="wave-3"
+              d="M0,510 C200,380 420,600 720,460 C980,340 1230,560 1440,430 L1440,700 L0,700 Z"
+              fill="url(#wg3)"/>
+
+        <!-- Wave 4 — front with dots texture -->
+        <path class="wave-4"
+              d="M-40,570 C180,460 420,650 720,520 C980,410 1240,610 1480,490 L1480,700 L-40,700 Z"
+              fill="url(#wg4)"/>
+        <path class="wave-4"
+              d="M-40,570 C180,460 420,650 720,520 C980,410 1240,610 1480,490 L1480,700 L-40,700 Z"
+              fill="url(#dots)"/>
+
+      </svg>
+    </div>
+
+    <!-- Gradient overlay — keeps left side clean for text -->
+    <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent pointer-events-none"></div>
+
+    <!-- Floating dashboard widgets (decorative) -->
+    <div class="absolute right-8 top-32 hidden lg:flex flex-col gap-4 opacity-70 pointer-events-none">
+
+      <!-- Widget 1 — mini bar chart -->
+      <div class="widget-float bg-white rounded-xl shadow-lg border border-slate-100 p-4 w-52">
+        <p class="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Sessions / Week</p>
+        <div class="flex items-end gap-1.5 h-12">
+          <div class="flex-1 bg-teal-200 rounded-sm" style="height:40%"></div>
+          <div class="flex-1 bg-teal-300 rounded-sm" style="height:65%"></div>
+          <div class="flex-1 bg-teal-400 rounded-sm" style="height:55%"></div>
+          <div class="flex-1 bg-teal-500 rounded-sm" style="height:80%"></div>
+          <div class="flex-1 bg-teal-400 rounded-sm" style="height:60%"></div>
+          <div class="flex-1 bg-teal-600 rounded-sm" style="height:95%"></div>
+          <div class="flex-1 bg-teal-500 rounded-sm" style="height:75%"></div>
+        </div>
+        <p class="text-right text-xs text-teal-600 font-semibold mt-1">+18.4%</p>
+      </div>
+
+      <!-- Widget 2 — KPI card -->
+      <div class="widget-float-delay bg-white rounded-xl shadow-lg border border-slate-100 p-4 w-52">
+        <p class="text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">Conversion Rate</p>
+        <p class="text-2xl font-bold text-slate-900">3.82%</p>
+        <div class="flex items-center gap-1 mt-1">
+          <span class="text-xs text-emerald-500 font-semibold">↑ 0.4pp</span>
+          <span class="text-xs text-slate-400">vs last month</span>
+        </div>
+      </div>
+
+      <!-- Widget 3 — mini funnel -->
+      <div class="widget-float bg-white rounded-xl shadow-lg border border-slate-100 p-4 w-52">
+        <p class="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Funnel</p>
+        <div class="space-y-1.5">
+          <div class="flex items-center gap-2">
+            <div class="h-2 bg-teal-500 rounded-full" style="width:100%"></div>
+            <span class="text-xs text-slate-500 w-8 shrink-0">100%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="h-2 bg-teal-400 rounded-full" style="width:68%"></div>
+            <span class="text-xs text-slate-500 w-8 shrink-0">68%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="h-2 bg-teal-300 rounded-full" style="width:32%"></div>
+            <span class="text-xs text-slate-500 w-8 shrink-0">32%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="h-2 bg-teal-200 rounded-full" style="width:12%"></div>
+            <span class="text-xs text-slate-500 w-8 shrink-0">12%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hero content -->
+    <div class="relative max-w-4xl mx-auto px-6 py-24">
+      <p class="text-teal-600 font-medium text-sm tracking-widest uppercase mb-4" data-i18n="hero.badge">
+        Open to new opportunities
+      </p>
+      <h1 class="text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-4">
+        Lisa Momas
+      </h1>
+      <h2 class="text-2xl md:text-3xl font-light mb-6">
+        <span class="gradient-text font-medium">Digital Analytics</span>
+        <span class="text-slate-400"> &amp; </span>
+        <span class="gradient-text font-medium">Data Analyst</span>
+      </h2>
+      <p class="text-lg text-slate-500 max-w-xl leading-relaxed mb-10" data-i18n="hero.desc">
+        I turn web and product data into actionable insights. Passionate about measurement, experimentation and data visualisation.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#projects"
+           class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+           data-i18n="hero.cta">
+          See my projects
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/lisa-momas-69518b177" target="_blank" rel="noopener"
+           class="border border-slate-200 hover:border-teal-400 text-slate-700 px-5 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/Neotopia" target="_blank" rel="noopener"
+           class="border border-slate-200 hover:border-teal-400 text-slate-700 px-5 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <!-- Medium -->
+        <a href="https://medium.com/@lisamomas" target="_blank" rel="noopener"
+           class="border border-slate-200 hover:border-teal-400 text-slate-700 px-5 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          <span data-i18n="hero.medium">My articles</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════ ABOUT ═════════════════════════════════ -->
+  <section id="about" class="bg-slate-50 py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="about.title">About</h2>
+      <div class="w-12 h-1 bg-teal-500 rounded mb-10"></div>
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="text-slate-600 leading-relaxed mb-4" data-i18n="about.p1">
+            Analytics specialist in digital analytics and data, I focus on understanding user behaviour and leveraging data to guide product and marketing decisions.
+          </p>
+          <p class="text-slate-600 leading-relaxed" data-i18n="about.p2">
+            My approach combines analytical rigour with data storytelling — turning raw data into clear visualisations and recommendations.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-white rounded-xl p-5 border border-slate-100 card-hover">
+            <p class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2" data-i18n="cat.analytics">Analytics & Tracking</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Google Analytics 4</span>
+              <span class="tag">Google Tag Manager</span>
+              <span class="tag">Piano Analytics</span>
+              <span class="tag">Amplitude</span>
+              <span class="tag">Mixpanel</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 border border-slate-100 card-hover">
+            <p class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2" data-i18n="cat.data">Data & SQL</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">BigQuery</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 border border-slate-100 card-hover">
+            <p class="text-xs font-semibold text-teal-600 uppercase tracking-wider mb-2" data-i18n="cat.viz">Visualisation</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Looker Studio</span>
+              <span class="tag">Tableau</span>
+              <span class="tag">Power BI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ SKILLS ════════════════════════════════ -->
+  <section id="skills" class="py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="skills.title">Skills</h2>
+      <div class="w-12 h-1 bg-teal-500 rounded mb-10"></div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+        <!-- Web analytics -->
+        <div class="rounded-xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl mb-3">📊</div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="skill.web.title">Web analytics</h3>
+          <p class="text-sm text-slate-500" data-i18n="skill.web.desc">Tagging plan implementation, funnel analysis, audience segmentation, cohort analysis.</p>
+        </div>
+
+        <!-- Experimentation -->
+        <div class="rounded-xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl mb-3">🧪</div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="skill.exp.title">Experimentation</h3>
+          <p class="text-sm text-slate-500" data-i18n="skill.exp.desc">A/B test design and analysis, results interpretation, product recommendations.</p>
+        </div>
+
+        <!-- Dashboarding -->
+        <div class="rounded-xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl mb-3">📈</div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="skill.dash.title">Dashboarding</h3>
+          <p class="text-sm text-slate-500" data-i18n="skill.dash.desc">Building decision-oriented interactive dashboards on Looker Studio, Tableau and Power BI.</p>
+        </div>
+
+        <!-- Tracking & GTM -->
+        <div class="rounded-xl border border-slate-100 p-6 card-hover">
+          <div class="text-2xl mb-3">🔗</div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="skill.tracking.title">Tracking & GTM</h3>
+          <p class="text-sm text-slate-500" data-i18n="skill.tracking.desc">Tagging plans, debugging, data layer, GA4 events implementation and third-party platforms.</p>
+        </div>
+
+        <!-- Python — en cours -->
+        <div class="rounded-xl border card-wip p-6 card-hover relative overflow-hidden">
+          <span class="absolute top-3 right-3 text-xs bg-amber-100 text-amber-600 rounded-full px-2 py-0.5 font-medium" data-i18n="badge.wip">In progress</span>
+          <div class="text-2xl mb-3">🐍</div>
+          <h3 class="font-semibold text-slate-700 mb-2" data-i18n="skill.python.title">Python</h3>
+          <p class="text-sm text-slate-400" data-i18n="skill.python.desc">Data exploration and processing with pandas, visualisation with matplotlib and plotly.</p>
+        </div>
+
+        <!-- Data engineering — en cours -->
+        <div class="rounded-xl border card-wip p-6 card-hover relative overflow-hidden">
+          <span class="absolute top-3 right-3 text-xs bg-amber-100 text-amber-600 rounded-full px-2 py-0.5 font-medium" data-i18n="badge.wip">In progress</span>
+          <div class="text-2xl mb-3">🗄️</div>
+          <h3 class="font-semibold text-slate-700 mb-2" data-i18n="skill.data.title">Data engineering</h3>
+          <p class="text-sm text-slate-400" data-i18n="skill.data.desc">Advanced SQL queries, data modelling, pipelines with BigQuery.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PROJECTS ══════════════════════════════ -->
+  <section id="projects" class="bg-slate-50 py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="projects.title">Projects & Dashboards</h2>
+      <div class="w-12 h-1 bg-teal-500 rounded mb-4"></div>
+      <p class="text-slate-500 mb-10" data-i18n="projects.desc">Real analytics projects — interactive visualisations and data analyses.</p>
+
+      <!-- Dashboard placeholders -->
+      <div class="grid sm:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white rounded-xl border border-dashed border-slate-200 p-8 flex flex-col items-center justify-center text-center min-h-48 card-hover">
+          <div class="text-3xl mb-3">🚧</div>
+          <p class="font-medium text-slate-700" data-i18n="project.placeholder1">Analytics Dashboard</p>
+          <p class="text-sm text-slate-400 mt-1" data-i18n="project.soon">Coming soon</p>
+        </div>
+        <div class="bg-white rounded-xl border border-dashed border-slate-200 p-8 flex flex-col items-center justify-center text-center min-h-48 card-hover">
+          <div class="text-3xl mb-3">🚧</div>
+          <p class="font-medium text-slate-700" data-i18n="project.placeholder2">Exploratory Analysis</p>
+          <p class="text-sm text-slate-400 mt-1" data-i18n="project.soon">Coming soon</p>
+        </div>
+      </div>
+
+      <!-- Medium card -->
+      <div class="bg-white rounded-xl border border-slate-100 p-6 flex items-center justify-between card-hover mb-4">
+        <div>
+          <p class="font-semibold text-slate-900" data-i18n="project.medium.title">Articles & Publications</p>
+          <p class="text-sm text-slate-500 mt-1" data-i18n="project.medium.desc">My thoughts on digital analytics, data and tools.</p>
+        </div>
+        <a href="https://medium.com/@lisamomas" target="_blank" rel="noopener"
+           class="bg-slate-900 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 shrink-0 ml-4">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          <span data-i18n="project.medium.cta">Read on Medium</span>
+        </a>
+      </div>
+
+      <!-- GitHub card -->
+      <div class="bg-white rounded-xl border border-slate-100 p-6 flex items-center justify-between card-hover">
+        <div>
+          <p class="font-semibold text-slate-900" data-i18n="project.github.title">See all my projects on GitHub</p>
+          <p class="text-sm text-slate-500 mt-1" data-i18n="project.github.desc">Code, notebooks and public experiments.</p>
+        </div>
+        <a href="https://github.com/Neotopia" target="_blank" rel="noopener"
+           class="bg-slate-900 hover:bg-slate-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 shrink-0 ml-4">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          Neotopia
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════ CONTACT ════════════════════════════════ -->
+  <section id="contact" class="py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-slate-900 mb-2" data-i18n="contact.title">Contact</h2>
+      <div class="w-12 h-1 bg-teal-500 rounded mb-6 mx-auto"></div>
+      <p class="text-slate-500 max-w-md mx-auto mb-10" data-i18n="contact.desc">
+        Open to opportunities in digital analytics and data. Feel free to reach out on LinkedIn.
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="https://www.linkedin.com/in/lisa-momas-69518b177" target="_blank" rel="noopener"
+           class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/Neotopia" target="_blank" rel="noopener"
+           class="border border-slate-200 hover:border-teal-400 text-slate-700 px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://medium.com/@lisamomas" target="_blank" rel="noopener"
+           class="border border-slate-200 hover:border-teal-400 text-slate-700 px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          Medium
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ══════════════════════════════════ -->
+  <footer class="border-t border-slate-100 py-6">
+    <div class="max-w-4xl mx-auto px-6 flex justify-between items-center text-sm text-slate-400">
+      <span>© 2026 Lisa Momas</span>
+      <span data-i18n="footer.role">Digital Analytics & Data Analyst</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════ i18n JS ══════════════════════════════════ -->
+  <script>
+    const translations = {
+      en: {
+        'nav.brand':              'About Me',
+        'nav.about':              'About',
+        'nav.skills':             'Skills',
+        'nav.projects':           'Projects',
+        'nav.contact':            'Contact',
+        'hero.badge':             'Open to new opportunities',
+        'hero.desc':              'I turn web and product data into actionable insights. Passionate about measurement, experimentation and data visualisation.',
+        'hero.cta':               'See my projects',
+        'hero.medium':            'My articles',
+        'about.title':            'About',
+        'about.p1':               'Analytics specialist in digital analytics and data, I focus on understanding user behaviour and leveraging data to guide product and marketing decisions.',
+        'about.p2':               'My approach combines analytical rigour with data storytelling — turning raw data into clear visualisations and recommendations.',
+        'cat.analytics':          'Analytics & Tracking',
+        'cat.data':               'Data & SQL',
+        'cat.viz':                'Visualisation',
+        'skills.title':           'Skills',
+        'skill.web.title':        'Web analytics',
+        'skill.web.desc':         'Tagging plan implementation, funnel analysis, audience segmentation, cohort analysis.',
+        'skill.exp.title':        'Experimentation',
+        'skill.exp.desc':         'A/B test design and analysis, results interpretation, product recommendations.',
+        'skill.dash.title':       'Dashboarding',
+        'skill.dash.desc':        'Building decision-oriented interactive dashboards on Looker Studio, Tableau and Power BI.',
+        'skill.tracking.title':   'Tracking & GTM',
+        'skill.tracking.desc':    'Tagging plans, debugging, data layer, GA4 events implementation and third-party platforms.',
+        'skill.python.title':     'Python',
+        'skill.python.desc':      'Data exploration and processing with pandas, visualisation with matplotlib and plotly.',
+        'skill.data.title':       'Data engineering',
+        'skill.data.desc':        'Advanced SQL queries, data modelling, pipelines with BigQuery.',
+        'badge.wip':              'In progress',
+        'projects.title':         'Projects & Dashboards',
+        'projects.desc':          'Real analytics projects — interactive visualisations and data analyses.',
+        'project.placeholder1':   'Analytics Dashboard',
+        'project.placeholder2':   'Exploratory Analysis',
+        'project.soon':           'Coming soon',
+        'project.medium.title':   'Articles & Publications',
+        'project.medium.desc':    'My thoughts on digital analytics, data and tools.',
+        'project.medium.cta':     'Read on Medium',
+        'project.github.title':   'See all my projects on GitHub',
+        'project.github.desc':    'Code, notebooks and public experiments.',
+        'contact.title':          'Contact',
+        'contact.desc':           'Open to opportunities in digital analytics and data. Feel free to reach out on LinkedIn.',
+        'footer.role':            'Digital Analytics & Data Analyst',
+      },
+      fr: {
+        'nav.brand':              'À propos',
+        'nav.about':              'À propos',
+        'nav.skills':             'Compétences',
+        'nav.projects':           'Projets',
+        'nav.contact':            'Contact',
+        'hero.badge':             'Disponible pour de nouvelles opportunités',
+        'hero.desc':              'Je transforme les données web et produit en insights actionnables. Passionnée par la mesure, l\'expérimentation et la data visualisation.',
+        'hero.cta':               'Voir mes projets',
+        'hero.medium':            'Mes articles',
+        'about.title':            'À propos',
+        'about.p1':               'Analyste spécialisée en digital analytics et data, je m\'intéresse à la compréhension fine des comportements utilisateurs et à la valorisation de la donnée pour guider les décisions produit et marketing.',
+        'about.p2':               'Mon approche combine rigueur analytique et sens du storytelling data — transformer des données brutes en visualisations et recommandations claires.',
+        'cat.analytics':          'Analytics & Tracking',
+        'cat.data':               'Data & SQL',
+        'cat.viz':                'Visualisation',
+        'skills.title':           'Compétences',
+        'skill.web.title':        'Analyse web',
+        'skill.web.desc':         'Implémentation de plans de taggage, analyse du funnel, segmentation audiences, analyse de cohortes.',
+        'skill.exp.title':        'Expérimentation',
+        'skill.exp.desc':         'Conception et analyse de tests A/B, interprétation des résultats, recommandations produit.',
+        'skill.dash.title':       'Dashboarding',
+        'skill.dash.desc':        'Création de tableaux de bord interactifs orientés décision sur Looker Studio, Tableau et Power BI.',
+        'skill.tracking.title':   'Tracking & GTM',
+        'skill.tracking.desc':    'Plans de marquage, débogage, data layer, implémentation events GA4 et plateformes tierces.',
+        'skill.python.title':     'Python',
+        'skill.python.desc':      'Exploration et traitement de données avec pandas, visualisation avec matplotlib et plotly.',
+        'skill.data.title':       'Data engineering',
+        'skill.data.desc':        'Requêtes SQL avancées, modélisation de données, pipelines avec BigQuery.',
+        'badge.wip':              'En cours',
+        'projects.title':         'Projets & Dashboards',
+        'projects.desc':          'Des projets analytics concrets — visualisations interactives et analyses de données.',
+        'project.placeholder1':   'Dashboard Analytics',
+        'project.placeholder2':   'Analyse exploratoire',
+        'project.soon':           'Bientôt disponible',
+        'project.medium.title':   'Articles & Publications',
+        'project.medium.desc':    'Mes réflexions sur le digital analytics, la data et les outils.',
+        'project.medium.cta':     'Lire sur Medium',
+        'project.github.title':   'Voir tous mes projets sur GitHub',
+        'project.github.desc':    'Code, notebooks et expérimentations publics.',
+        'contact.title':          'Me contacter',
+        'contact.desc':           'Ouverte aux opportunités en digital analytics et data. N\'hésitez pas à me contacter sur LinkedIn.',
+        'footer.role':            'Digital Analytics & Data Analyst',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.documentElement.lang = lang;
+      // Toggle button states
+      document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
+      document.getElementById('btn-en').classList.toggle('text-slate-500', lang !== 'en');
+      document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
+      document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
+    }
+
+    // Init on load
+    setLang('en');
+  </script>
+
+</body>
+</html>
