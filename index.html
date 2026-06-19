@@ -301,10 +301,10 @@
       <div class="grid md:grid-cols-2 gap-12 items-start">
         <div>
           <p class="text-slate-600 leading-relaxed mb-4" data-i18n="about.p1">
-            Analytics specialist in digital analytics and data, I focus on understanding user behaviour and leveraging data to guide product and marketing decisions.
+            Digital Analytics specialist with 4+ years of experience in tracking implementation, data quality, and building dashboards that drive decisions. Based in Paris, open to in-house Data Analytics roles.
           </p>
           <p class="text-slate-600 leading-relaxed" data-i18n="about.p2">
-            My approach combines analytical rigour with data storytelling — turning raw data into clear visualisations and recommendations.
+            Currently expanding into data analytics engineering — SQL, BigQuery, data modelling. My approach combines analytical rigour with data storytelling: turning raw data into clear visualisations and recommendations.
           </p>
         </div>
         <div class="space-y-4">
@@ -314,6 +314,7 @@
               <span class="tag">Google Analytics 4</span>
               <span class="tag">Google Tag Manager</span>
               <span class="tag">Piano Analytics</span>
+              <span class="tag">TagCommander</span>
               <span class="tag">Amplitude</span>
               <span class="tag">Mixpanel</span>
             </div>
@@ -386,7 +387,7 @@
           <span class="absolute top-3 right-3 text-xs bg-amber-100 text-amber-600 rounded-full px-2 py-0.5 font-medium" data-i18n="badge.wip">In progress</span>
           <div class="text-2xl mb-3">🗄️</div>
           <h3 class="font-semibold text-slate-700 mb-2" data-i18n="skill.data.title">Data engineering</h3>
-          <p class="text-sm text-slate-400" data-i18n="skill.data.desc">Advanced SQL queries, data modelling, pipelines with BigQuery.</p>
+          <p class="text-sm text-slate-400" data-i18n="skill.data.desc">Advanced SQL queries, data modelling, pipelines with BigQuery. Learning dbt.</p>
         </div>
 
       </div>
@@ -400,18 +401,42 @@
       <div class="w-12 h-1 bg-teal-500 rounded mb-4"></div>
       <p class="text-slate-500 mb-10" data-i18n="projects.desc">Real analytics projects — interactive visualisations and data analyses.</p>
 
-      <!-- Dashboard placeholders -->
+      <!-- GitHub projects -->
       <div class="grid sm:grid-cols-2 gap-6 mb-6">
-        <div class="bg-white rounded-xl border border-dashed border-slate-200 p-8 flex flex-col items-center justify-center text-center min-h-48 card-hover">
-          <div class="text-3xl mb-3">🚧</div>
-          <p class="font-medium text-slate-700" data-i18n="project.placeholder1">Analytics Dashboard</p>
-          <p class="text-sm text-slate-400 mt-1" data-i18n="project.soon">Coming soon</p>
-        </div>
-        <div class="bg-white rounded-xl border border-dashed border-slate-200 p-8 flex flex-col items-center justify-center text-center min-h-48 card-hover">
-          <div class="text-3xl mb-3">🚧</div>
-          <p class="font-medium text-slate-700" data-i18n="project.placeholder2">Exploratory Analysis</p>
-          <p class="text-sm text-slate-400 mt-1" data-i18n="project.soon">Coming soon</p>
-        </div>
+
+        <!-- Project 1 — GA4 BigQuery Ecommerce -->
+        <a href="https://github.com/Neotopia/ga4-bigquery-ecommerce-analytics" target="_blank" rel="noopener"
+           class="bg-white rounded-xl border border-slate-100 p-6 card-hover flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span class="text-xs text-slate-400 font-mono truncate">ga4-bigquery-ecommerce-analytics</span>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="project.ga4.title">GA4 → BigQuery Analytics</h3>
+          <p class="text-sm text-slate-500 leading-relaxed flex-1" data-i18n="project.ga4.desc">SQL analysis of GA4 e-commerce event data: channel performance, conversion funnel, retention cohorts, churn signals.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="tag">BigQuery</span>
+            <span class="tag">GA4</span>
+            <span class="tag">Window Functions</span>
+            <span class="tag">Cohort Analysis</span>
+          </div>
+        </a>
+
+        <!-- Project 2 — Fintech SQL -->
+        <a href="https://github.com/Neotopia/bigquery-sql-fintech" target="_blank" rel="noopener"
+           class="bg-white rounded-xl border border-slate-100 p-6 card-hover flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span class="text-xs text-slate-400 font-mono truncate">bigquery-sql-fintech</span>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="project.fintech.title">BigQuery SQL — Fintech Analyses</h3>
+          <p class="text-sm text-slate-500 leading-relaxed flex-1" data-i18n="project.fintech.desc">SQL queries on simulated financial data: window functions, transaction analysis, enrichment pipelines.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="tag">BigQuery</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Window Functions</span>
+          </div>
+        </a>
+
       </div>
 
       <!-- Medium card -->
@@ -492,8 +517,8 @@
         'hero.cta':               'See my projects',
         'hero.medium':            'My articles',
         'about.title':            'About',
-        'about.p1':               'Analytics specialist in digital analytics and data, I focus on understanding user behaviour and leveraging data to guide product and marketing decisions.',
-        'about.p2':               'My approach combines analytical rigour with data storytelling — turning raw data into clear visualisations and recommendations.',
+        'about.p1':               'Digital Analytics specialist with 4+ years of experience in tracking implementation, data quality, and building dashboards that drive decisions. Based in Paris, open to in-house Data Analytics roles.',
+        'about.p2':               'Currently expanding into data analytics engineering — SQL, BigQuery, data modelling. My approach combines analytical rigour with data storytelling: turning raw data into clear visualisations and recommendations.',
         'cat.analytics':          'Analytics & Tracking',
         'cat.data':               'Data & SQL',
         'cat.viz':                'Visualisation',
@@ -509,13 +534,14 @@
         'skill.python.title':     'Python',
         'skill.python.desc':      'Data exploration and processing with pandas, visualisation with matplotlib and plotly.',
         'skill.data.title':       'Data engineering',
-        'skill.data.desc':        'Advanced SQL queries, data modelling, pipelines with BigQuery.',
+        'skill.data.desc':        'Advanced SQL queries, data modelling, pipelines with BigQuery. Learning dbt.',
         'badge.wip':              'In progress',
         'projects.title':         'Projects & Dashboards',
         'projects.desc':          'Real analytics projects — interactive visualisations and data analyses.',
-        'project.placeholder1':   'Analytics Dashboard',
-        'project.placeholder2':   'Exploratory Analysis',
-        'project.soon':           'Coming soon',
+        'project.ga4.title':      'GA4 → BigQuery Analytics',
+        'project.ga4.desc':       'SQL analysis of GA4 e-commerce event data: channel performance, conversion funnel, retention cohorts, churn signals.',
+        'project.fintech.title':  'BigQuery SQL — Fintech Analyses',
+        'project.fintech.desc':   'SQL queries on simulated financial data: window functions, transaction analysis, enrichment pipelines.',
         'project.medium.title':   'Articles & Publications',
         'project.medium.desc':    'My thoughts on digital analytics, data and tools.',
         'project.medium.cta':     'Read on Medium',
@@ -536,8 +562,8 @@
         'hero.cta':               'Voir mes projets',
         'hero.medium':            'Mes articles',
         'about.title':            'À propos',
-        'about.p1':               'Analyste spécialisée en digital analytics et data, je m\'intéresse à la compréhension fine des comportements utilisateurs et à la valorisation de la donnée pour guider les décisions produit et marketing.',
-        'about.p2':               'Mon approche combine rigueur analytique et sens du storytelling data — transformer des données brutes en visualisations et recommandations claires.',
+        'about.p1':               'Spécialiste Digital Analytics avec 4+ ans d\'expérience en implémentation tracking, qualité de la donnée et création de dashboards qui guident les décisions. Basée à Paris, ouverte à des rôles Data Analytics en interne.',
+        'about.p2':               'En montée en compétences vers le data analytics engineering — SQL, BigQuery, modélisation. Mon approche combine rigueur analytique et sens du storytelling data : transformer des données brutes en visualisations et recommandations claires.',
         'cat.analytics':          'Analytics & Tracking',
         'cat.data':               'Data & SQL',
         'cat.viz':                'Visualisation',
@@ -553,13 +579,14 @@
         'skill.python.title':     'Python',
         'skill.python.desc':      'Exploration et traitement de données avec pandas, visualisation avec matplotlib et plotly.',
         'skill.data.title':       'Data engineering',
-        'skill.data.desc':        'Requêtes SQL avancées, modélisation de données, pipelines avec BigQuery.',
+        'skill.data.desc':        'Requêtes SQL avancées, modélisation de données, pipelines avec BigQuery. Apprentissage de dbt.',
         'badge.wip':              'En cours',
         'projects.title':         'Projets & Dashboards',
         'projects.desc':          'Des projets analytics concrets — visualisations interactives et analyses de données.',
-        'project.placeholder1':   'Dashboard Analytics',
-        'project.placeholder2':   'Analyse exploratoire',
-        'project.soon':           'Bientôt disponible',
+        'project.ga4.title':      'GA4 → BigQuery Analytics',
+        'project.ga4.desc':       'Analyse SQL de données GA4 e-commerce exportées vers BigQuery : performance des canaux, funnel de conversion, cohortes de rétention, signaux de churn.',
+        'project.fintech.title':  'BigQuery SQL — Analyses Fintech',
+        'project.fintech.desc':   'Requêtes SQL sur données financières simulées : fonctions window, analyse transactionnelle, pipelines d\'enrichissement.',
         'project.medium.title':   'Articles & Publications',
         'project.medium.desc':    'Mes réflexions sur le digital analytics, la data et les outils.',
         'project.medium.cta':     'Lire sur Medium',
