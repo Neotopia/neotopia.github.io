@@ -99,6 +99,85 @@
       border-color: #fde68a;
       background: linear-gradient(135deg, #fffbeb, #fff);
     }
+
+    /* ── Rabbit runner ──────────────────────────────────── */
+    .rabbit-track {
+      position: relative;
+      width: 100%;
+      height: 78px;
+      overflow: hidden;
+      background: white;
+      border-top: 1px solid #f1f5f9;
+    }
+    .rabbit-ground-line {
+      position: absolute;
+      bottom: 13px;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #cbd5e1 5%, #cbd5e1 95%, transparent 100%);
+    }
+    .rabbit-wrap {
+      position: absolute;
+      bottom: 12px;
+      animation: rabbit-travel 12s linear infinite;
+    }
+    .rabbit-svg {
+      display: block;
+      animation: rabbit-bob 0.4s ease-in-out infinite;
+    }
+    @keyframes rabbit-travel {
+      from { transform: translateX(-80px); }
+      to   { transform: translateX(calc(100vw + 80px)); }
+    }
+    @keyframes rabbit-bob {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+    .rabbit-leg-fa, .rabbit-leg-ba {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      animation: rabbit-leg-a 0.4s ease-in-out infinite;
+    }
+    .rabbit-leg-fb, .rabbit-leg-bb {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      animation: rabbit-leg-b 0.4s ease-in-out infinite;
+    }
+    @keyframes rabbit-leg-a {
+      0%, 100% { transform: rotate(-24deg); }
+      50%      { transform: rotate(24deg); }
+    }
+    @keyframes rabbit-leg-b {
+      0%, 100% { transform: rotate(24deg); }
+      50%      { transform: rotate(-24deg); }
+    }
+    .rabbit-ear-l {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: ear-flop-l 0.8s ease-in-out infinite;
+    }
+    .rabbit-ear-r {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: ear-flop-r 0.8s ease-in-out infinite;
+    }
+    @keyframes ear-flop-l {
+      0%, 100% { transform: rotate(-4deg); }
+      50%      { transform: rotate(4deg); }
+    }
+    @keyframes ear-flop-r {
+      0%, 100% { transform: rotate(4deg); }
+      50%      { transform: rotate(-4deg); }
+    }
+    .rabbit-tail {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: tail-wag 0.4s ease-in-out infinite;
+    }
+    @keyframes tail-wag {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.15); }
+    }
   </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased">
@@ -274,7 +353,7 @@
           See my projects
         </a>
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/lisa-momas-69518b177" target="_blank" rel="noopener"
+        <a href="https://www.linkedin.com/in/lisa-momas" target="_blank" rel="noopener"
            class="border border-slate-200 hover:border-teal-400 text-slate-700 px-5 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
@@ -439,6 +518,23 @@
           </div>
         </a>
 
+        <!-- Project 3 — Stock Analytics Pipeline -->
+        <a href="https://github.com/Neotopia/stock-analytics-pipeline" target="_blank" rel="noopener"
+           class="bg-white rounded-xl border border-slate-100 p-6 card-hover flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span class="text-xs text-slate-400 font-mono truncate">stock-analytics-pipeline</span>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-2" data-i18n="project.stock.title">Stock Analytics Pipeline</h3>
+          <p class="text-sm text-slate-500 leading-relaxed flex-1" data-i18n="project.stock.desc">End-to-end pipeline: Python ingestion (yfinance, Finviz) → PostgreSQL → dbt (Medallion architecture) → Metabase interactive dashboard.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="tag">Python</span>
+            <span class="tag">dbt</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Metabase</span>
+          </div>
+        </a>
+
       </div>
 
       <!-- Medium card -->
@@ -478,7 +574,7 @@
         Open to opportunities in digital analytics and data. Feel free to reach out on LinkedIn.
       </p>
       <div class="flex justify-center gap-4 flex-wrap">
-        <a href="https://www.linkedin.com/in/lisa-momas-69518b177" target="_blank" rel="noopener"
+        <a href="https://www.linkedin.com/in/lisa-momas" target="_blank" rel="noopener"
            class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
@@ -496,6 +592,56 @@
       </div>
     </div>
   </section>
+
+  <!-- ══════════════════════════════ RABBIT ══════════════════════════════════ -->
+  <div class="rabbit-track">
+    <div class="rabbit-ground-line"></div>
+    <div class="rabbit-wrap">
+      <svg class="rabbit-svg" viewBox="0 0 74 62" width="74" height="62" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Fluffy tail -->
+        <ellipse class="rabbit-tail" cx="11" cy="30" rx="7" ry="6" fill="#ccfbf1"/>
+
+        <!-- Back legs (drawn before body → appear behind it) -->
+        <rect class="rabbit-leg-ba" x="15" y="40" width="7" height="19" rx="3.5" fill="#0b7069"/>
+        <rect class="rabbit-leg-bb" x="23" y="40" width="7" height="19" rx="3.5" fill="#0d9488"/>
+
+        <!-- Body -->
+        <ellipse cx="32" cy="31" rx="21" ry="13" fill="#0d9488"/>
+
+        <!-- Front legs (drawn after body → appear in front) -->
+        <rect class="rabbit-leg-fa" x="38" y="40" width="7" height="19" rx="3.5" fill="#0d9488"/>
+        <rect class="rabbit-leg-fb" x="46" y="40" width="7" height="19" rx="3.5" fill="#0b7069"/>
+
+        <!-- Head -->
+        <circle cx="51" cy="20" r="13" fill="#0d9488"/>
+
+        <!-- Ear left -->
+        <g class="rabbit-ear-l">
+          <ellipse cx="44" cy="6" rx="5" ry="13" fill="#0d9488"/>
+          <ellipse cx="44" cy="6" rx="3" ry="10" fill="#5eead4"/>
+        </g>
+
+        <!-- Ear right -->
+        <g class="rabbit-ear-r">
+          <ellipse cx="53" cy="4" rx="5" ry="13" fill="#0d9488"/>
+          <ellipse cx="53" cy="4" rx="3" ry="10" fill="#5eead4"/>
+        </g>
+
+        <!-- Eye -->
+        <circle cx="57" cy="17" r="3" fill="white"/>
+        <circle cx="57.5" cy="17.5" r="1.5" fill="#0f766e"/>
+        <circle cx="58.5" cy="16.5" r="0.7" fill="white"/>
+
+        <!-- Nose -->
+        <ellipse cx="62" cy="24" rx="2" ry="1.5" fill="#99f6e4"/>
+
+        <!-- Cheek blush -->
+        <ellipse cx="56" cy="24" rx="3.5" ry="2" fill="#99f6e4" opacity="0.5"/>
+
+      </svg>
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════ FOOTER ══════════════════════════════════ -->
   <footer class="border-t border-slate-100 py-6">
@@ -544,6 +690,8 @@
         'project.ga4.desc':       'SQL analysis of GA4 e-commerce event data: channel performance, conversion funnel, retention cohorts, churn signals.',
         'project.fintech.title':  'BigQuery SQL — Fintech Analyses',
         'project.fintech.desc':   'SQL queries on simulated financial data: window functions, transaction analysis, enrichment pipelines.',
+        'project.stock.title':    'Stock Analytics Pipeline',
+        'project.stock.desc':     'End-to-end pipeline: Python ingestion (yfinance, Finviz) → PostgreSQL → dbt (Medallion architecture) → Metabase interactive dashboard.',
         'project.medium.title':   'Articles & Publications',
         'project.medium.desc':    'My thoughts on digital analytics, data and tools.',
         'project.medium.cta':     'Read on Medium',
@@ -589,6 +737,8 @@
         'project.ga4.desc':       'Analyse SQL de données GA4 e-commerce exportées vers BigQuery : performance des canaux, funnel de conversion, cohortes de rétention, signaux de churn.',
         'project.fintech.title':  'BigQuery SQL — Analyses Fintech',
         'project.fintech.desc':   'Requêtes SQL sur données financières simulées : fonctions window, analyse transactionnelle, pipelines d\'enrichissement.',
+        'project.stock.title':    'Stock Analytics Pipeline',
+        'project.stock.desc':     'Pipeline complet : ingestion Python (yfinance, Finviz) → PostgreSQL → dbt (architecture Medallion) → dashboard interactif Metabase.',
         'project.medium.title':   'Articles & Publications',
         'project.medium.desc':    'Mes réflexions sur le digital analytics, la data et les outils.',
         'project.medium.cta':     'Lire sur Medium',
