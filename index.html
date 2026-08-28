@@ -813,7 +813,7 @@
         // Walk up from the clicked element to the nearest clickable ancestor
         // (link, button, or anything with a data-i18n / id / role) so that
         // clicking an icon inside a link still reports the link itself.
-        var el = e.target.closest('a, button, [role="button"], [data-i18n]') || e.target;
+        var el = e.target.closest('a, button, [role="button"]') || e.target;
 
         // project_name: dynamique pour les cartes projet (slug affiché dans l'élément marqué
         // data-project-slug — un repère dédié au tracking, indépendant du style visuel).
