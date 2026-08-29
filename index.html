@@ -675,9 +675,11 @@
 
   <!-- ═══════════════════════════════ FOOTER ══════════════════════════════════ -->
   <footer class="border-t border-slate-100 py-6">
-    <div class="max-w-4xl mx-auto px-6 flex justify-between items-center text-sm text-slate-400">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-slate-400">
       <span>© 2026 Lisa Momas</span>
       <span data-i18n="footer.role">Digital Analytics & Analytics Engineering</span>
+      <a href="politique-confidentialite.html" id="footer-privacy-link" class="hover:text-teal-600 transition-colors"
+         data-i18n="footer.privacy" data-interaction-type="menu" data-section="footer">Privacy Policy</a>
     </div>
   </footer>
 
@@ -728,6 +730,7 @@
         'contact.title':          'Contact',
         'contact.desc':           'Feel free to reach out on LinkedIn.',
         'footer.role':            'Digital Analytics & Analytics Engineering',
+        'footer.privacy':         'Privacy Policy',
       },
       fr: {
         'nav.brand':              'À propos',
@@ -773,6 +776,7 @@
         'contact.title':          'Me contacter',
         'contact.desc':           'N\'hésitez pas à me contacter sur LinkedIn.',
         'footer.role':            'Digital Analytics & Analytics Engineering',
+        'footer.privacy':         'Politique de confidentialité',
       }
     };
 
@@ -791,6 +795,8 @@
       document.getElementById('btn-en').classList.toggle('text-slate-500', lang !== 'en');
       document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
       document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
+      const privacyLink = document.getElementById('footer-privacy-link');
+      if (privacyLink) privacyLink.href = 'politique-confidentialite.html?lang=' + lang;
     }
 
     // Init on load
