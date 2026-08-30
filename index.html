@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cookiebot — doit être le tout premier script chargé, avant le dataLayer et GTM,
-       pour que le blocage automatique (data-blockingmode="auto") intercepte bien
-       les scripts de mesure avant tout consentement. -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" data-blockingmode="auto" type="text/javascript"></script>
+  <!-- Cookiebot — mode manuel : on ne laisse Cookiebot bloquer QUE le script GTM
+       (via type="text/plain" data-cookieconsent="statistics" ci-dessous), au lieu
+       du mode auto qui scanne/intercepte tous les scripts de la page et entre en
+       conflit avec le CDN Tailwind (classes utilitaires non générées). -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" type="text/javascript"></script>
 
   <!-- dataLayer state — variables globales disponibles avant le chargement du conteneur GTM -->
   <script>
@@ -12,8 +13,10 @@
     dataLayer.push({site_name: 'My portfolio'});
   </script>
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- Google Tag Manager — bloqué manuellement tant que le consentement "Statistiques"
+       n'est pas accordé ; Cookiebot repasse ce script en text/javascript et l'exécute
+       automatiquement dès que ce consentement est donné. -->
+  <script type="text/plain" data-cookieconsent="statistics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -685,6 +688,8 @@
       <span data-i18n="footer.role">Digital Analytics & Analytics Engineering</span>
       <a href="politique-confidentialite.html" id="footer-privacy-link" class="hover:text-teal-600 transition-colors"
          data-i18n="footer.privacy" data-interaction-type="menu" data-section="footer">Privacy Policy</a>
+      <button onclick="if (window.Cookiebot) Cookiebot.renew();" class="hover:text-teal-600 transition-colors"
+         data-i18n="footer.cookies" data-interaction-type="cta" data-section="footer">Cookie settings</button>
     </div>
   </footer>
 
@@ -736,6 +741,7 @@
         'contact.desc':           'Feel free to reach out on LinkedIn.',
         'footer.role':            'Digital Analytics & Analytics Engineering',
         'footer.privacy':         'Privacy Policy',
+        'footer.cookies':         'Cookie settings',
       },
       fr: {
         'nav.brand':              'À propos',
@@ -782,6 +788,7 @@
         'contact.desc':           'N\'hésitez pas à me contacter sur LinkedIn.',
         'footer.role':            'Digital Analytics & Analytics Engineering',
         'footer.privacy':         'Politique de confidentialité',
+        'footer.cookies':         'Gestion des cookies',
       }
     };
 

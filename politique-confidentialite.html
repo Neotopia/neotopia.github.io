@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cookiebot — doit être le tout premier script chargé, avant le dataLayer et GTM,
-       pour que le blocage automatique (data-blockingmode="auto") intercepte bien
-       les scripts de mesure avant tout consentement. -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" data-blockingmode="auto" type="text/javascript"></script>
+  <!-- Cookiebot — mode manuel : on ne laisse Cookiebot bloquer QUE le script GTM
+       (via type="text/plain" data-cookieconsent="statistics" ci-dessous), au lieu
+       du mode auto qui scanne/intercepte tous les scripts de la page et entre en
+       conflit avec le CDN Tailwind (classes utilitaires non générées). -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" type="text/javascript"></script>
 
   <!-- dataLayer state — variables globales disponibles avant le chargement du conteneur GTM -->
   <script>
@@ -12,8 +13,10 @@
     dataLayer.push({site_name: 'My portfolio'});
   </script>
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- Google Tag Manager — bloqué manuellement tant que le consentement "Statistiques"
+       n'est pas accordé ; Cookiebot repasse ce script en text/javascript et l'exécute
+       automatiquement dès que ce consentement est donné. -->
+  <script type="text/plain" data-cookieconsent="statistics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -140,8 +143,10 @@
 
   <!-- ═══════════════════════════════ FOOTER ══════════════════════════════════ -->
   <footer class="border-t border-slate-100 py-6">
-    <div class="max-w-3xl mx-auto px-6 flex justify-between items-center text-sm text-slate-400">
+    <div class="max-w-3xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-slate-400">
       <span>© 2026 Lisa Momas</span>
+      <button onclick="if (window.Cookiebot) Cookiebot.renew();" class="hover:text-teal-600 transition-colors"
+         data-i18n="footer.cookies" data-interaction-type="cta" data-section="footer">Cookie settings</button>
       <a href="index.html" class="hover:text-teal-600 transition-colors" data-i18n="nav.back">← Back to portfolio</a>
     </div>
   </footer>
@@ -173,6 +178,7 @@
         'privacy.s9.body': 'This site is hosted on GitHub Pages and served exclusively over HTTPS.',
         'privacy.s10.title': '9. Changes to this policy',
         'privacy.s10.body': 'This policy may be updated from time to time. The date at the top of this page always reflects the latest version.',
+        'footer.cookies': 'Cookie settings',
       },
       fr: {
         'nav.back': '← Retour au portfolio',
@@ -198,6 +204,7 @@
         'privacy.s9.body': "Ce site est hébergé sur GitHub Pages et servi exclusivement en HTTPS.",
         'privacy.s10.title': '9. Modifications de cette politique',
         'privacy.s10.body': "Cette politique peut être mise à jour ponctuellement. La date en haut de cette page reflète toujours la dernière version.",
+        'footer.cookies': 'Gestion des cookies',
       }
     };
 
