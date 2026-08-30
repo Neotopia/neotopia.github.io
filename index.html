@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Cookiebot — doit être le tout premier script chargé, avant le dataLayer et GTM,
+       pour que le blocage automatique (data-blockingmode="auto") intercepte bien
+       les scripts de mesure avant tout consentement. -->
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" data-blockingmode="auto" type="text/javascript"></script>
+
   <!-- dataLayer state — variables globales disponibles avant le chargement du conteneur GTM -->
   <script>
     window.dataLayer = window.dataLayer || [];
