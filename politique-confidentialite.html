@@ -210,10 +210,15 @@
       document.getElementById('btn-en').classList.toggle('text-slate-500', lang !== 'en');
       document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
       document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
+      // Mémorise le choix de langue (préférence fonctionnelle, exemptée du consentement cookies)
+      try { localStorage.setItem('lang', lang); } catch (e) {}
     }
 
-    // Detect language from index.html if arriving via a link (falls back to EN)
-    setLang(new URLSearchParams(window.location.search).get('lang') === 'fr' ? 'fr' : 'en');
+    // Init on load — priorité : ?lang= dans l'URL (arrivée depuis index.html) > langue mémorisée > EN
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    let savedLang = 'en';
+    try { savedLang = localStorage.getItem('lang') || 'en'; } catch (e) {}
+    setLang(urlLang === 'fr' || urlLang === 'en' ? urlLang : savedLang);
   </script>
 
   <!-- ═══════════════════════════ Generic click tracking → dataLayer ═══════════════════════════ -->

@@ -797,10 +797,14 @@
       document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
       const privacyLink = document.getElementById('footer-privacy-link');
       if (privacyLink) privacyLink.href = 'politique-confidentialite.html?lang=' + lang;
+      // Mémorise le choix de langue (préférence fonctionnelle, exemptée du consentement cookies)
+      try { localStorage.setItem('lang', lang); } catch (e) {}
     }
 
-    // Init on load
-    setLang('en');
+    // Init on load — réutilise la langue mémorisée si disponible, sinon EN par défaut
+    let savedLang = 'en';
+    try { savedLang = localStorage.getItem('lang') || 'en'; } catch (e) {}
+    setLang(savedLang);
   </script>
 
   <!-- ═══════════════════════════ Generic click tracking → dataLayer ═══════════════════════════ -->
