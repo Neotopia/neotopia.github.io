@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cookiebot — mode manuel : on ne laisse Cookiebot bloquer QUE le script GTM
-       (via type="text/plain" data-cookieconsent="statistics" ci-dessous), au lieu
-       du mode auto qui scanne/intercepte tous les scripts de la page et entre en
-       conflit avec le CDN Tailwind (classes utilitaires non générées). -->
+  <!-- Cookiebot — manual mode: Cookiebot is only allowed to block the GTM script
+       (via type="text/plain" data-cookieconsent="statistics" below), instead of
+       auto mode, which scans/intercepts every script on the page and conflicts
+       with the Tailwind CDN (utility classes not generated). -->
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" type="text/javascript"></script>
 
-  <!-- dataLayer state — variables globales disponibles avant le chargement du conteneur GTM -->
+  <!-- dataLayer state — global variables available before the GTM container loads -->
   <script>
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({site_name: 'My portfolio'});
   </script>
 
-  <!-- Google Tag Manager — bloqué manuellement tant que le consentement "Statistiques"
-       n'est pas accordé ; Cookiebot repasse ce script en text/javascript et l'exécute
-       automatiquement dès que ce consentement est donné. -->
+  <!-- Google Tag Manager — manually blocked until "Statistics" consent is granted;
+       Cookiebot switches this script back to text/javascript and runs it
+       automatically as soon as that consent is given. -->
   <script type="text/plain" data-cookieconsent="statistics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -33,28 +33,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            teal: {
-              50:  '#f0fdfa',
-              100: '#ccfbf1',
-              400: '#2dd4bf',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <script src="assets/js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    html { scroll-behavior: smooth; }
-    .lang-active { background-color: #0d9488; color: white; }
     section + section { margin-top: 2.25rem; }
     h2 { scroll-margin-top: 90px; }
   </style>
@@ -74,10 +55,10 @@
 
       <!-- Language toggle -->
       <div class="flex rounded-full border border-slate-200 overflow-hidden text-xs font-semibold">
-        <button id="btn-en" onclick="setLang('en')"
+        <button id="btn-en" type="button" onclick="setLang('en')" aria-pressed="true"
           class="px-3 py-1 transition-colors lang-active"
           data-interaction-type="language" data-section="nav">EN</button>
-        <button id="btn-fr" onclick="setLang('fr')"
+        <button id="btn-fr" type="button" onclick="setLang('fr')" aria-pressed="false"
           class="px-3 py-1 transition-colors text-slate-500 hover:text-teal-600"
           data-interaction-type="language" data-section="nav">FR</button>
       </div>
@@ -91,7 +72,7 @@
     <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-2" data-i18n="privacy.title">Privacy Policy</h1>
     <p class="text-sm text-slate-400 mb-6" data-i18n="privacy.updated">Last updated: August 29, 2026</p>
 
-    <p class="text-slate-600 leading-relaxed mb-10" data-i18n="privacy.intro">This site is a personal, non-commercial portfolio. For any question about your data, or to exercise your rights, you can write at any time to <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>.</p>
+    <p class="text-slate-600 leading-relaxed mb-10" data-i18n="privacy.intro" data-i18n-html>This site is a personal, non-commercial portfolio. For any question about your data, or to exercise your rights, you can write at any time to <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>.</p>
 
     <section>
       <h2 class="text-xl font-semibold text-slate-900 mb-2" data-i18n="privacy.s2.title">1. Data collected</h2>
@@ -126,7 +107,7 @@
 
     <section>
       <h2 class="text-xl font-semibold text-slate-900 mb-2" data-i18n="privacy.s8.title">7. Your rights</h2>
-      <p class="text-slate-600 leading-relaxed" data-i18n="privacy.s8.body">Under GDPR, you have the right to access, rectify, erase, restrict, or object to the processing of your data, and to data portability. You can withdraw your consent at any time using the "Manage my cookie preferences" button above. To exercise any of these rights, contact <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>. You also have the right to lodge a complaint with the CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener" class="text-teal-600 hover:underline">cnil.fr</a>).</p>
+      <p class="text-slate-600 leading-relaxed" data-i18n="privacy.s8.body" data-i18n-html>Under GDPR, you have the right to access, rectify, erase, restrict, or object to the processing of your data, and to data portability. You can withdraw your consent at any time using the "Manage my cookie preferences" button above. To exercise any of these rights, contact <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>. You also have the right to lodge a complaint with the CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener" class="text-teal-600 hover:underline">cnil.fr</a>).</p>
     </section>
 
     <section>
@@ -158,7 +139,7 @@
         'nav.back': '← Back to portfolio',
         'privacy.title': 'Privacy Policy',
         'privacy.updated': 'Last updated: August 29, 2026',
-        'privacy.intro': 'This site is a personal, non-commercial portfolio. For any question about your data, or to exercise your rights, you can write at any time to lisa.learning8@gmail.com.',
+        'privacy.intro': 'This site is a personal, non-commercial portfolio. For any question about your data, or to exercise your rights, you can write at any time to <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>.',
         'privacy.s2.title': '1. Data collected',
         'privacy.s2.body': 'This site does not have a contact form and does not knowingly collect any directly identifying personal data. Once you consent to cookies, Google Analytics 4 automatically collects: pages viewed, clicks (categorised as interaction type, platform, page section, project name), device and browser type, approximate location (derived from an anonymised IP address), and the referring site. No advertising or social media tracking is used.',
         'privacy.s3.title': '2. Purpose',
@@ -173,7 +154,7 @@
         'privacy.s7.title': '6. Retention period',
         'privacy.s7.body': 'Analytics data is kept for a maximum of 14 months, in line with CNIL recommendations for audience-measurement cookies. Consent choices themselves are stored for up to 12 months.',
         'privacy.s8.title': '7. Your rights',
-        'privacy.s8.body': 'Under GDPR, you have the right to access, rectify, erase, restrict, or object to the processing of your data, and to data portability. You can withdraw your consent at any time using the "Manage my cookie preferences" button above. To exercise any of these rights, contact lisa.learning8@gmail.com. You also have the right to lodge a complaint with the CNIL (cnil.fr).',
+        'privacy.s8.body': 'Under GDPR, you have the right to access, rectify, erase, restrict, or object to the processing of your data, and to data portability. You can withdraw your consent at any time using the "Manage my cookie preferences" button above. To exercise any of these rights, contact <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>. You also have the right to lodge a complaint with the CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener" class="text-teal-600 hover:underline">cnil.fr</a>).',
         'privacy.s9.title': '8. Security',
         'privacy.s9.body': 'This site is hosted on GitHub Pages and served exclusively over HTTPS.',
         'privacy.s10.title': '9. Changes to this policy',
@@ -184,7 +165,7 @@
         'nav.back': '← Retour au portfolio',
         'privacy.title': 'Politique de confidentialité',
         'privacy.updated': 'Dernière mise à jour : 29 août 2026',
-        'privacy.intro': "Ce site est un portfolio personnel, à but non commercial. Pour toute question sur vos données, ou pour exercer vos droits, vous pouvez écrire à tout moment à lisa.learning8@gmail.com.",
+        'privacy.intro': 'Ce site est un portfolio personnel, à but non commercial. Pour toute question sur vos données, ou pour exercer vos droits, vous pouvez écrire à tout moment à <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>.',
         'privacy.s2.title': '1. Données collectées',
         'privacy.s2.body': "Ce site ne comporte pas de formulaire de contact et ne collecte sciemment aucune donnée personnelle directement identifiante. Une fois votre consentement donné, Google Analytics 4 collecte automatiquement : les pages consultées, les clics (catégorisés par type d'interaction, plateforme, section de page, nom de projet), le type d'appareil et de navigateur, la localisation approximative (déduite d'une adresse IP anonymisée), et le site d'origine. Aucun traceur publicitaire ou de média social n'est utilisé.",
         'privacy.s3.title': '2. Finalité',
@@ -199,7 +180,7 @@
         'privacy.s7.title': '6. Durée de conservation',
         'privacy.s7.body': "Les données analytics sont conservées 14 mois maximum, conformément aux recommandations de la CNIL pour les cookies de mesure d'audience. Les choix de consentement eux-mêmes sont conservés jusqu'à 12 mois.",
         'privacy.s8.title': '7. Vos droits',
-        'privacy.s8.body': "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition au traitement de vos données, ainsi que d'un droit à la portabilité. Vous pouvez retirer votre consentement à tout moment via le bouton « Gérer mes préférences de cookies » ci-dessus. Pour exercer l'un de ces droits, contactez lisa.learning8@gmail.com. Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (cnil.fr).",
+        'privacy.s8.body': 'Conformément au RGPD, vous disposez d\'un droit d\'accès, de rectification, d\'effacement, de limitation et d\'opposition au traitement de vos données, ainsi que d\'un droit à la portabilité. Vous pouvez retirer votre consentement à tout moment via le bouton « Gérer mes préférences de cookies » ci-dessus. Pour exercer l\'un de ces droits, contactez <a href="mailto:lisa.learning8@gmail.com" class="text-teal-600 hover:underline">lisa.learning8@gmail.com</a>. Vous disposez également du droit d\'introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener" class="text-teal-600 hover:underline">cnil.fr</a>).',
         'privacy.s9.title': '8. Sécurité',
         'privacy.s9.body': "Ce site est hébergé sur GitHub Pages et servi exclusivement en HTTPS.",
         'privacy.s10.title': '9. Modifications de cette politique',
@@ -208,66 +189,11 @@
       }
     };
 
-    let currentLang = 'en';
-
-    function setLang(lang) {
-      currentLang = lang;
-      const t = translations[lang];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.textContent = t[key];
-      });
-      document.documentElement.lang = lang;
-      document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
-      document.getElementById('btn-en').classList.toggle('text-slate-500', lang !== 'en');
-      document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
-      document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
-      // Mémorise le choix de langue (préférence fonctionnelle, exemptée du consentement cookies)
-      try { localStorage.setItem('lang', lang); } catch (e) {}
-    }
-
-    // Init on load — priorité : ?lang= dans l'URL (arrivée depuis index.html) > langue mémorisée > EN
-    const urlLang = new URLSearchParams(window.location.search).get('lang');
-    let savedLang = 'en';
-    try { savedLang = localStorage.getItem('lang') || 'en'; } catch (e) {}
-    setLang(urlLang === 'fr' || urlLang === 'en' ? urlLang : savedLang);
   </script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/lang-router.js"></script>
 
-  <!-- ═══════════════════════════ Generic click tracking → dataLayer ═══════════════════════════ -->
-  <script>
-    (function () {
-      window.dataLayer = window.dataLayer || [];
-
-      function truncate(str, max) {
-        if (!str) return undefined;
-        str = str.trim().replace(/\s+/g, ' ');
-        return str.length > max ? str.slice(0, max) + '…' : str;
-      }
-
-      document.addEventListener('click', function (e) {
-        var el = e.target.closest('a, button, [role="button"]') || e.target;
-
-        var slugEl = el.querySelector ? el.querySelector('[data-project-slug]') : null;
-        var projectName = slugEl
-          ? slugEl.innerText.trim()
-          : (el.dataset ? el.dataset.project || undefined : undefined);
-
-        dataLayer.push({
-          event: 'generic_click',
-          click_tag: el.tagName ? el.tagName.toLowerCase() : undefined,
-          click_text: truncate(el.innerText || el.textContent, 100),
-          click_id: el.id || undefined,
-          click_classes: el.className && typeof el.className === 'string' ? el.className : undefined,
-          click_url: el.href || undefined,
-          click_target: el.getAttribute && el.getAttribute('target') || undefined,
-          project_name: projectName,
-          interaction_type: el.dataset ? el.dataset.interactionType || undefined : undefined,
-          platform: el.dataset ? el.dataset.platform || undefined : undefined,
-          page_section: el.dataset ? el.dataset.section || undefined : undefined
-        });
-      }, true);
-    })();
-  </script>
+  <script src="assets/js/tracking.js"></script>
 
 </body>
 </html>

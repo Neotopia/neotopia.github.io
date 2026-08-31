@@ -1,0 +1,138 @@
+html { scroll-behavior: smooth; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0d9488, #0369a1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.12);
+    }
+    .tag {
+      display: inline-block;
+      background: #f0fdfa;
+      color: #0f766e;
+      border: 1px solid #ccfbf1;
+      border-radius: 9999px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Hero SVG wave animation */
+    .wave-1 { animation: wave-drift  18s ease-in-out infinite; }
+    .wave-2 { animation: wave-drift  22s ease-in-out infinite reverse; }
+    .wave-3 { animation: wave-drift2 15s ease-in-out infinite; }
+    .wave-4 { animation: wave-drift2 25s ease-in-out infinite reverse; }
+
+    @keyframes wave-drift {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(-1.5%); }
+    }
+    @keyframes wave-drift2 {
+      0%, 100% { transform: translateX(0); }
+      50%       { transform: translateX(1.5%); }
+    }
+
+    /* Floating dashboard widget decoration */
+    .widget-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .widget-float-delay {
+      animation: float 6s ease-in-out infinite;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* Language toggle active state */
+    .lang-active {
+      background-color: #0d9488;
+      color: white;
+    }
+
+    /* ── Rabbit runner ──────────────────────────────────── */
+    .rabbit-track {
+      position: relative;
+      width: 100%;
+      height: 78px;
+      overflow: hidden;
+      background: white;
+      border-top: 1px solid #f1f5f9;
+    }
+    .rabbit-ground-line {
+      position: absolute;
+      bottom: 13px;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #cbd5e1 5%, #cbd5e1 95%, transparent 100%);
+    }
+    .rabbit-wrap {
+      position: absolute;
+      bottom: 12px;
+      animation: rabbit-travel 12s linear infinite;
+    }
+    .rabbit-svg {
+      display: block;
+      animation: rabbit-bob 0.4s ease-in-out infinite;
+    }
+    @keyframes rabbit-travel {
+      from { transform: translateX(-80px); }
+      to   { transform: translateX(calc(100vw + 80px)); }
+    }
+    @keyframes rabbit-bob {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+    .rabbit-leg-fa, .rabbit-leg-ba {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      animation: rabbit-leg-a 0.4s ease-in-out infinite;
+    }
+    .rabbit-leg-fb, .rabbit-leg-bb {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      animation: rabbit-leg-b 0.4s ease-in-out infinite;
+    }
+    @keyframes rabbit-leg-a {
+      0%, 100% { transform: rotate(-24deg); }
+      50%      { transform: rotate(24deg); }
+    }
+    @keyframes rabbit-leg-b {
+      0%, 100% { transform: rotate(24deg); }
+      50%      { transform: rotate(-24deg); }
+    }
+    .rabbit-ear-l {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: ear-flop-l 0.8s ease-in-out infinite;
+    }
+    .rabbit-ear-r {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      animation: ear-flop-r 0.8s ease-in-out infinite;
+    }
+    @keyframes ear-flop-l {
+      0%, 100% { transform: rotate(-4deg); }
+      50%      { transform: rotate(4deg); }
+    }
+    @keyframes ear-flop-r {
+      0%, 100% { transform: rotate(4deg); }
+      50%      { transform: rotate(-4deg); }
+    }
+    .rabbit-tail {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: tail-wag 0.4s ease-in-out infinite;
+    }
+    @keyframes tail-wag {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.15); }
+    }

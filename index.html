@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cookiebot — mode manuel : on ne laisse Cookiebot bloquer QUE le script GTM
-       (via type="text/plain" data-cookieconsent="statistics" ci-dessous), au lieu
-       du mode auto qui scanne/intercepte tous les scripts de la page et entre en
-       conflit avec le CDN Tailwind (classes utilitaires non générées). -->
+  <!-- Cookiebot — manual mode: Cookiebot is only allowed to block the GTM script
+       (via type="text/plain" data-cookieconsent="statistics" below), instead of
+       auto mode, which scans/intercepts every script on the page and conflicts
+       with the Tailwind CDN (utility classes not generated). -->
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="44696c03-0291-4f8c-824c-dc82c7c706fa" type="text/javascript"></script>
 
-  <!-- dataLayer state — variables globales disponibles avant le chargement du conteneur GTM -->
+  <!-- dataLayer state — global variables available before the GTM container loads -->
   <script>
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({site_name: 'My portfolio'});
   </script>
 
-  <!-- Google Tag Manager — bloqué manuellement tant que le consentement "Statistiques"
-       n'est pas accordé ; Cookiebot repasse ce script en text/javascript et l'exécute
-       automatiquement dès que ce consentement est donné. -->
+  <!-- Google Tag Manager — manually blocked until "Statistics" consent is granted;
+       Cookiebot switches this script back to text/javascript and runs it
+       automatically as soon as that consent is given. -->
   <script type="text/plain" data-cookieconsent="statistics">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -35,171 +35,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            teal: {
-              50:  '#f0fdfa',
-              100: '#ccfbf1',
-              400: '#2dd4bf',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #0d9488, #0369a1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .card-hover {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.12);
-    }
-    .tag {
-      display: inline-block;
-      background: #f0fdfa;
-      color: #0f766e;
-      border: 1px solid #ccfbf1;
-      border-radius: 9999px;
-      padding: 3px 12px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    /* Hero SVG wave animation */
-    .wave-1 { animation: wave-drift  18s ease-in-out infinite; }
-    .wave-2 { animation: wave-drift  22s ease-in-out infinite reverse; }
-    .wave-3 { animation: wave-drift2 15s ease-in-out infinite; }
-    .wave-4 { animation: wave-drift2 25s ease-in-out infinite reverse; }
-
-    @keyframes wave-drift {
-      0%, 100% { transform: translateX(0); }
-      50%       { transform: translateX(-1.5%); }
-    }
-    @keyframes wave-drift2 {
-      0%, 100% { transform: translateX(0); }
-      50%       { transform: translateX(1.5%); }
-    }
-
-    /* Floating dashboard widget decoration */
-    .widget-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    .widget-float-delay {
-      animation: float 6s ease-in-out infinite;
-      animation-delay: 2s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-10px); }
-    }
-
-    /* Language toggle active state */
-    .lang-active {
-      background-color: #0d9488;
-      color: white;
-    }
-
-    /* In-progress card */
-    .card-wip {
-      border-color: #fde68a;
-      background: linear-gradient(135deg, #fffbeb, #fff);
-    }
-
-    /* ── Rabbit runner ──────────────────────────────────── */
-    .rabbit-track {
-      position: relative;
-      width: 100%;
-      height: 78px;
-      overflow: hidden;
-      background: white;
-      border-top: 1px solid #f1f5f9;
-    }
-    .rabbit-ground-line {
-      position: absolute;
-      bottom: 13px;
-      left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, #cbd5e1 5%, #cbd5e1 95%, transparent 100%);
-    }
-    .rabbit-wrap {
-      position: absolute;
-      bottom: 12px;
-      animation: rabbit-travel 12s linear infinite;
-    }
-    .rabbit-svg {
-      display: block;
-      animation: rabbit-bob 0.4s ease-in-out infinite;
-    }
-    @keyframes rabbit-travel {
-      from { transform: translateX(-80px); }
-      to   { transform: translateX(calc(100vw + 80px)); }
-    }
-    @keyframes rabbit-bob {
-      0%, 100% { transform: translateY(0px); }
-      50%      { transform: translateY(-4px); }
-    }
-    .rabbit-leg-fa, .rabbit-leg-ba {
-      transform-box: fill-box;
-      transform-origin: 50% 0%;
-      animation: rabbit-leg-a 0.4s ease-in-out infinite;
-    }
-    .rabbit-leg-fb, .rabbit-leg-bb {
-      transform-box: fill-box;
-      transform-origin: 50% 0%;
-      animation: rabbit-leg-b 0.4s ease-in-out infinite;
-    }
-    @keyframes rabbit-leg-a {
-      0%, 100% { transform: rotate(-24deg); }
-      50%      { transform: rotate(24deg); }
-    }
-    @keyframes rabbit-leg-b {
-      0%, 100% { transform: rotate(24deg); }
-      50%      { transform: rotate(-24deg); }
-    }
-    .rabbit-ear-l {
-      transform-box: fill-box;
-      transform-origin: 50% 100%;
-      animation: ear-flop-l 0.8s ease-in-out infinite;
-    }
-    .rabbit-ear-r {
-      transform-box: fill-box;
-      transform-origin: 50% 100%;
-      animation: ear-flop-r 0.8s ease-in-out infinite;
-    }
-    @keyframes ear-flop-l {
-      0%, 100% { transform: rotate(-4deg); }
-      50%      { transform: rotate(4deg); }
-    }
-    @keyframes ear-flop-r {
-      0%, 100% { transform: rotate(4deg); }
-      50%      { transform: rotate(-4deg); }
-    }
-    .rabbit-tail {
-      transform-box: fill-box;
-      transform-origin: 50% 50%;
-      animation: tail-wag 0.4s ease-in-out infinite;
-    }
-    @keyframes tail-wag {
-      0%, 100% { transform: scale(1); }
-      50%      { transform: scale(1.15); }
-    }
-  </style>
+  <script src="assets/js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased">
   <!-- Google Tag Manager (noscript) -->
@@ -228,10 +65,10 @@
 
         <!-- Language toggle -->
         <div class="flex rounded-full border border-slate-200 overflow-hidden text-xs font-semibold">
-          <button id="btn-en" onclick="setLang('en')"
+          <button id="btn-en" type="button" onclick="setLang('en')" aria-pressed="true"
             class="px-3 py-1 transition-colors lang-active"
             data-interaction-type="language" data-section="nav">EN</button>
-          <button id="btn-fr" onclick="setLang('fr')"
+          <button id="btn-fr" type="button" onclick="setLang('fr')" aria-pressed="false"
             class="px-3 py-1 transition-colors text-slate-500 hover:text-teal-600"
             data-interaction-type="language" data-section="nav">FR</button>
         </div>
@@ -686,7 +523,7 @@
     <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-sm text-slate-400">
       <span>© 2026 Lisa Momas</span>
       <span data-i18n="footer.role">Digital Analytics & Analytics Engineering</span>
-      <a href="politique-confidentialite.html" id="footer-privacy-link" class="hover:text-teal-600 transition-colors"
+      <a href="politique-confidentialite.html" data-lang-link="politique-confidentialite.html" class="hover:text-teal-600 transition-colors"
          data-i18n="footer.privacy" data-interaction-type="menu" data-section="footer">Privacy Policy</a>
       <button onclick="if (window.Cookiebot) Cookiebot.renew();" class="hover:text-teal-600 transition-colors"
          data-i18n="footer.cookies" data-interaction-type="cta" data-section="footer">Cookie settings</button>
@@ -792,81 +629,11 @@
       }
     };
 
-    let currentLang = 'en';
-
-    function setLang(lang) {
-      currentLang = lang;
-      const t = translations[lang];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.textContent = t[key];
-      });
-      document.documentElement.lang = lang;
-      // Toggle button states
-      document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
-      document.getElementById('btn-en').classList.toggle('text-slate-500', lang !== 'en');
-      document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
-      document.getElementById('btn-fr').classList.toggle('text-slate-500', lang !== 'fr');
-      const privacyLink = document.getElementById('footer-privacy-link');
-      if (privacyLink) privacyLink.href = 'politique-confidentialite.html?lang=' + lang;
-      // Mémorise le choix de langue (préférence fonctionnelle, exemptée du consentement cookies)
-      try { localStorage.setItem('lang', lang); } catch (e) {}
-    }
-
-    // Init on load — réutilise la langue mémorisée si disponible, sinon EN par défaut
-    let savedLang = 'en';
-    try { savedLang = localStorage.getItem('lang') || 'en'; } catch (e) {}
-    setLang(savedLang);
   </script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/lang-router.js"></script>
 
-  <!-- ═══════════════════════════ Generic click tracking → dataLayer ═══════════════════════════ -->
-  <script>
-    (function () {
-      window.dataLayer = window.dataLayer || [];
-
-      // Truncate long text so we don't push huge blobs into the dataLayer
-      function truncate(str, max) {
-        if (!str) return undefined;
-        str = str.trim().replace(/\s+/g, ' ');
-        return str.length > max ? str.slice(0, max) + '…' : str;
-      }
-
-      document.addEventListener('click', function (e) {
-        // Walk up from the clicked element to the nearest clickable ancestor
-        // (link, button, or anything with a data-i18n / id / role) so that
-        // clicking an icon inside a link still reports the link itself.
-        var el = e.target.closest('a, button, [role="button"]') || e.target;
-
-        // project_name: dynamique pour les cartes projet (slug affiché dans l'élément marqué
-        // data-project-slug — un repère dédié au tracking, indépendant du style visuel).
-        // Volontairement PAS le <h3> : son texte est traduit (data-i18n EN/FR), ce qui ferait
-        // varier project_name selon la langue du visiteur. Le slug n'est jamais traduit.
-        // Sinon valeur manuelle posée en data-project (ex: profil-github) si applicable.
-        var slugEl = el.querySelector ? el.querySelector('[data-project-slug]') : null;
-        var projectName = slugEl
-          ? slugEl.innerText.trim()
-          : (el.dataset ? el.dataset.project || undefined : undefined);
-
-        dataLayer.push({
-          event: 'generic_click',
-
-          // --- dynamique : lu depuis l'élément DOM ---
-          click_tag: el.tagName ? el.tagName.toLowerCase() : undefined,
-          click_text: truncate(el.innerText || el.textContent, 100),
-          click_id: el.id || undefined,
-          click_classes: el.className && typeof el.className === 'string' ? el.className : undefined,
-          click_url: el.href || undefined,
-          click_target: el.getAttribute && el.getAttribute('target') || undefined,
-          project_name: projectName,
-
-          // --- manuel : lu depuis les attributs data-* ---
-          interaction_type: el.dataset ? el.dataset.interactionType || undefined : undefined,
-          platform: el.dataset ? el.dataset.platform || undefined : undefined,
-          page_section: el.dataset ? el.dataset.section || undefined : undefined
-        });
-      }, true);
-    })();
-  </script>
+  <script src="assets/js/tracking.js"></script>
 
 </body>
 </html>
